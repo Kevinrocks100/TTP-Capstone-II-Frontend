@@ -1,0 +1,64 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../assets/gradient-background.jpg");
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+.container {
+  background-color: black;
+  border: 5px solid white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5%;
+  height: 30rem;
+  width: 40rem;
+
+  &__header {
+    font-family: "Verdana", sans-serif;
+    color: white;
+    font-size: 4rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1rem;
+
+    &__text {
+      color: white;
+      font-size: 1.5rem;
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+  }
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    height: 3rem;
+    background-color: white;
+    border-radius: 1rem;
+
+    &__logo {
+      width: 2rem;
+      height: 2rem;
+      margin-right: 1rem;
+    }
+
+    &__text {
+      font-size: 1.5rem;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: #e6e6e6;
+      transform: translateY(-2px);
+    }
+  }
+}
