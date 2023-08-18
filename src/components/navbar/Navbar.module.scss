@@ -1,0 +1,17 @@
+.navbar {
+  background-color: #74c3e1;
+  height: 4rem;
+  border-bottom: 2px solid black;
+
+  display: flex;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar__logo {
+  height: 3.5rem;
+  user-select: none;
+  -moz-user-select: none;
+}

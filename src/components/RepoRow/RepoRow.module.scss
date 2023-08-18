@@ -1,0 +1,25 @@
+.repoRow {
+  height: 4rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  border: 1px solid black;
+
+  &__name {
+    font-family: "Verdana", sans-serif;
+    font-size: 1.5rem;
+  }
+
+  &__arrow {
+    height: 2rem;
+  }
+
+
+  &:hover {
+    cursor: pointer;
+  }
+}
