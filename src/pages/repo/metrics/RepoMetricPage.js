@@ -1,6 +1,5 @@
 import styles from './RepoMetricPage.module.scss'
 import Navbar from "../../../components/navbar/Navbar";
-import {Nav} from "react-bootstrap";
 
 export default function RepoMetricPage() {
     return (
