@@ -4,11 +4,13 @@ import {Link} from "react-router-dom";
 
 export default function Navbar() {
     return (
-        <Link to="/repos" className={styles.navbar}>
-            <img className={styles.navbar__logo} src={githubLogo} alt="Github Logo" />
+        <div className={styles.navbar}>
+            <Link to="/repos">
+                <img className={styles.navbar__logo} src={githubLogo} alt="Github Logo"/>
+            </Link>
             <div>
                 {/*insert github username here*/}
             </div>
-        </Link>
+        </div>
     )
 }
