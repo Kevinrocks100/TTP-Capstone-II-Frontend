@@ -1,4 +1,4 @@
-// BOILERPLATE CODE, EDIT THIS
+import UserActionTypes from "./user.types";
 
 export const INITIAL_USER_STATE = {
     user: {}
@@ -6,6 +6,8 @@ export const INITIAL_USER_STATE = {
 
 const userReducer = (state = INITIAL_USER_STATE, { type, payload }) => {
     switch (type) {
+        case UserActionTypes.ADD_USER:
+            return { ...state, user: payload };
         default:
             return state;
     }
