@@ -11,7 +11,7 @@ import 'firebaseui/dist/firebaseui.css'
 import styles from '../pages/index.module.scss'
 import githubLogo from '../assets/github-logo.png'
 
-const GithubOAuthButton = () => {
+const GithubOAuthButton = ({handleLogin}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector((state) => state.user.user);
@@ -24,24 +24,27 @@ const GithubOAuthButton = () => {
     };
 
     const handleGithubOAuth = () => {
-        signInWithPopup(auth, provider).then(async(result) => {
+        signInWithPopup(auth, provider).then(() => {
             // This gives you a GitHub Access Token. You can use it to access the GitHub API.
             // The signed-in user info.
-            window.location.assign("http://localhost:3000/repos"); 
-            const user = result.user;
-            const username = user.reloadUserInfo.screenName; 
-            const email = user.reloadUserInfo.providerUserInfo[0].email;
-            const photoUrl = user.reloadUserInfo.photoUrl;
-            const accessToken = result.user.accessToken; 
+            auth.onAuthStateChanged((currentUser) => {
+                const uid = currentUser.uid;
+                const username = currentUser.reloadUserInfo.screenName; 
+                // const email = user.reloadUserInfo.providerUserInfo[0].email;
+                // const photoUrl = user.reloadUserInfo.photoUrl;
+                const accessToken = currentUser.accessToken; 
+                const userInfo = {
+                    uid, 
+                    username, 
+                    name : username, 
+                    accessToken
+                }
+                addUser(userInfo); 
+                navigate("/repos"); 
+                handleLogin();
+            })
             // IdP data available using getAdditionalUserInfo(result)
             // ...
-            const userInfo = {
-                uid : user.uid, 
-                username, 
-                name : username, 
-                accessToken
-            }
-            await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/register`, userInfo);
         }).catch((error) => {
             // Handle Errors here.
             const errorCode = error.code;
