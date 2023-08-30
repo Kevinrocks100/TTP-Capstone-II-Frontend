@@ -24,24 +24,30 @@ const GithubOAuthButton = ({handleLogin}) => {
     };
 
     const handleGithubOAuth = () => {
-        signInWithPopup(auth, provider).then(() => {
+        signInWithPopup(auth, provider).then((result) => {
             // This gives you a GitHub Access Token. You can use it to access the GitHub API.
             // The signed-in user info.
+            const credential = GithubAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+
             auth.onAuthStateChanged((currentUser) => {
                 const uid = currentUser.uid;
                 const username = currentUser.reloadUserInfo.screenName; 
                 // const email = user.reloadUserInfo.providerUserInfo[0].email;
                 // const photoUrl = user.reloadUserInfo.photoUrl;
-                const accessToken = currentUser.accessToken; 
+                const accessToken = token; 
                 const userInfo = {
                     uid, 
                     username, 
                     name : username, 
                     accessToken
                 }
-                addUser(userInfo); 
-                navigate("/repos"); 
+                addUser(userInfo);
                 handleLogin();
+                // Redirect after 2 seconds
+                setTimeout(() => {
+                    navigate("/repos");
+                }, 500); // Delay in milliseconds
             })
             // IdP data available using getAdditionalUserInfo(result)
             // ...
