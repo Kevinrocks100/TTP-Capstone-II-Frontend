@@ -23,8 +23,13 @@
     grid-gap: 3rem;
 
     &__cell {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       height: 20rem;
-      background-color: gray;
+      background-color: white;
+      padding-bottom: 1rem;
+
     }
   }
 
