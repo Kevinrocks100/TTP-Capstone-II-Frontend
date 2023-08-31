@@ -21,9 +21,11 @@ function RepoListPage() {
         fetchAllRepos(username);
     }, []);
 
-    const fetchSelectedRepo = (username, name) => {
+    const fetchSelectedRepo = async (username, name) => {
         dispatch(fetchSelectedRepoThunk(username, name));
-        navigate(`/repos/${name}`); 
+        setTimeout(() => {
+            navigate(`/repos/${name}`);
+        }, 500);  
     };
 
     const handleRepoClick = (username, name) => {
