@@ -1,6 +1,6 @@
 import styles from './RepoMetricPage.module.scss'
 import Navbar from "../../../components/navbar/Navbar";
-import {Line} from 'react-chartjs-2'
+import { Line } from 'react-chartjs-2'
 import {
     Chart as ChartJS,
     LineElement,
@@ -8,15 +8,23 @@ import {
     LinearScale,
     PointElement,
 } from "chart.js";
-
-ChartJS.register(
-    LineElement,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-)
+import TimeToMerge from "../../../components/Metrics/timeToMerge"
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function RepoMetricPage() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const repo = useSelector((state) => state.repos.selectedRepo);
+    const owner = useSelector((state) => state.user.user.gitHubUserName);
+    const name = repo.name;
+    ChartJS.register(
+        LineElement,
+        CategoryScale,
+        LinearScale,
+        PointElement,
+    )
     const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']; // Manually create labels
 
     const data = {
@@ -34,17 +42,16 @@ export default function RepoMetricPage() {
         type: 'line',
         data: data,
     };
-
     return (
-        <div className={styles.main}>
-            <Navbar/>
+        name ? (<div className={styles.main}>
+            <Navbar />
             <div className={styles.container}>
-                <div style={{paddingTop: '2rem'}}>
+                <div style={{ paddingTop: '2rem' }}>
                     <h1 className={styles.container__header}>Repo Name</h1>
                     <div className={styles.container__grid}>
                         <div className={styles.container__grid__cell}>
                             <h2>Responsiveness</h2>
-                            <Line id="2" data={data}/>
+                            <Line id="2" data={data} />
                         </div>
                         <div className={styles.container__grid__cell}>
                             <h2>PR Iteration Time</h2>
@@ -54,6 +61,7 @@ export default function RepoMetricPage() {
                         </div>
                         <div className={styles.container__grid__cell}>
                             <h2>Time to Merge</h2>
+                            <TimeToMerge repo={repo} owner={owner} name={name}></TimeToMerge>
                         </div>
                         <div className={styles.container__grid__cell}>
                             <h2>Time to First Commit</h2>
@@ -67,6 +75,6 @@ export default function RepoMetricPage() {
                     <span className={styles.container__sidebar__header}>Metrics</span>
                 </div>
             </div>
-        </div>
+        </div>) : <div><h1>loading...</h1></div>
     )
 }
