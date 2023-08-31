@@ -22,10 +22,13 @@ function RepoListPage() {
     }, []);
 
     const fetchSelectedRepo = async (username, name) => {
-        dispatch(fetchSelectedRepoThunk(username, name));
-        setTimeout(() => {
-            navigate(`/repos/${name}`);
-        }, 500);  
+        // dispatch(fetchSelectedRepoThunk(username, name));
+        navigate(`/repos/${name}`, {
+            state: {
+                username,
+                name,
+            },
+        });
     };
 
     const handleRepoClick = (username, name) => {
@@ -36,7 +39,7 @@ function RepoListPage() {
         <div className={styles.container}>
             <Navbar />
             <h1 className={styles.container__header}>Select A Repository</h1>
-            {allRepos.map(repo => (
+            {allRepos && allRepos.map(repo => (
                 <RepoRow
                     key={repo.id}
                     fullName={repo.full_name}
