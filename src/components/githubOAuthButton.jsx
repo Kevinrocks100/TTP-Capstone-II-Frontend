@@ -46,7 +46,11 @@ const GithubOAuthButton = ({handleLogin}) => {
                 handleLogin();
                 // Redirect after 2 seconds
                 setTimeout(() => {
-                    navigate("/repos");
+                    navigate("/repos", {
+                        state: {
+                            username,
+                        }
+                    });
                 }, 500); // Delay in milliseconds
             })
             // IdP data available using getAdditionalUserInfo(result)
