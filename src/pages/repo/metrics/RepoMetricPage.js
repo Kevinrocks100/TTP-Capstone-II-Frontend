@@ -32,17 +32,6 @@ export default function RepoMetricPage() {
                     <h1 className={styles.container__header}>{name}</h1>
                     <div className={styles.container__grid}>
                         <div className={styles.container__grid__cell}>
-                            <h2>Responsiveness</h2>
-                            {/* <Responsiveness repo={repo} owner={owner} name={name}></Responsiveness> */}
-                        </div>
-                        <div className={styles.container__grid__cell}>
-                            <h2>PR Iteration Time</h2>
-                            {/* <PRIterationTime repo={repo} owner={owner} name={name}></PRIterationTime> */}
-                        </div>
-                        <div className={styles.container__grid__cell}>
-                            <h2>Unreviewed Files</h2>
-                        </div>
-                        <div className={styles.container__grid__cell}>
                             <h2>Time to Merge</h2>
                             <TimeToMerge repo={repo} owner={owner} name={name}></TimeToMerge>
                         </div>
@@ -55,9 +44,6 @@ export default function RepoMetricPage() {
                             <FollowOnCommits repo={repo} owner={owner} name={name}></FollowOnCommits>
                         </div>
                     </div>
-                </div>
-                <div className={styles.container__sidebar}>
-                    <span className={styles.container__sidebar__header}>Metrics</span>
                 </div>
             </div>
         </div>
