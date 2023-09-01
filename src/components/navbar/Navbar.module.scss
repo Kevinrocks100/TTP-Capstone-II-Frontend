@@ -4,14 +4,43 @@
   border-bottom: 2px solid black;
 
   display: flex;
-  padding-left: 3rem;
-  padding-right: 3rem;
+  padding-left: 5rem;
   align-items: center;
   justify-content: space-between;
-}
 
-.navbar__logo {
-  height: 3.5rem;
-  user-select: none;
-  -moz-user-select: none;
+  &__link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__logo {
+      height: 3rem;
+      user-select: none;
+      -moz-user-select: none;
+      padding-right: .5rem;
+    }
+
+    &__name {
+      color: black;
+      font-size: 1.65rem;
+      font-family: 'Ubuntu', sans-serif;
+    }
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    font-family: sans-serif;
+    height: 3.9rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    border-left: .65px solid rgb(0, 0, 0);
+    border-right: .65px solid rgb(0, 0, 0);
+    font-weight: 700;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #a4dcf3;
+    }
+  }
 }
